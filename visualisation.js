@@ -38,7 +38,7 @@ class Graph {
 	constructor(data, info) {
 		this.data = data;
 		this.info = info;
-		this.year = 1969;
+		this.year = 1964;
 		this.xFeature = "energy";
 		this.yFeature = "danceability"
 		this.xScale = d3.scaleLinear().domain([0, 1])
@@ -69,22 +69,18 @@ class Graph {
 			
 			infoCard.append("rect")
 					.attr("x", this.xScale(1))
+					.attr("y", (d, i) => i * 55 - 10)
 					.attr("width", 80)
 					.attr("height", 50)
-					.attr("fill", "#fff")
-					.attr("y", -100)
-					.transition()
-					.attr("y", (d, i) => i * 55 - 10);
+					.attr("fill", "#fff");
 					
 			infoCard.append("text")
 					.attr("x", this.xScale(1) + 5)
+					.attr("y", (d, i) => i * 55 + 10 - 10)
 					.attr("font-size", 5)
 					.attr("alignment-baseline", "text-before-edge")
 					.text(d => d)
-					.call(wrap, 70)
-					.attr("y", -100)
-					.transition()
-					.attr("y", (d, i) => i * 55 + 10 - 10);
+					.call(wrap, 70);
 		}
 		   
 		this.drawAxis();
