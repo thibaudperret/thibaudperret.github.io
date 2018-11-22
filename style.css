@@ -1,0 +1,83 @@
+body {
+	margin: 0;
+}
+
+line.axis {
+	stroke: #222;
+	stroke-linecap: square;
+}
+
+text {
+	font-family: Calibri;
+}
+
+text.axis {
+	fill: #222;
+	text-anchor: middle;
+}
+
+text.label {
+	font-size: 8;
+}
+
+text.year {
+	font-size: 10;
+}
+
+circle.normal {
+	stroke: rgba(0, 0, 0, 0);
+	stroke-width: 1;
+}
+
+circle.selected {
+	stroke: #ddd;
+	stroke-width: 1;
+}
+
+.base-card {
+	fill: #fff;
+	width: 60;
+	height: 80;
+}
+
+text.band-name {
+	font-size: 5;
+	font-weight: bold;
+}
+
+.cover-img {
+	width: 50;
+	height: 50;
+}
+
+text.song-name {
+	font-size: 5;
+}
+
+.contemporary-rnb {
+	fill: #4FF27E;
+}
+
+.british-rnb {
+	fill: #938DE3;
+}
+
+.alternative-rnb {	
+	fill: #E5625D;
+}
+
+.new-jack-swing-rnb {
+	fill: #EDC151;
+}
+
+.new-orleans-rnb {
+	fill: #053A34;
+}
+
+.jump-blues {
+	fill: #5CC7D7;
+}
+
+.blue-eyed-soul {
+	fill: #2E61D7;
+}
