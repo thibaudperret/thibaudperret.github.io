@@ -24,6 +24,12 @@ text.year {
 	font-size: 10;
 }
 
+text.legend {
+	/* fill: #222; */
+	font-size: 3;
+	alignment-baseline: middle; 
+}
+
 circle.normal {
 	stroke: rgba(0, 0, 0, 0);
 	stroke-width: 1;
@@ -38,6 +44,21 @@ circle.selected {
 	fill: #fff;
 	width: 60;
 	height: 80;
+	stroke: #ddd;
+	stroke-width: 0.1;
+}
+
+rect.info-card {
+	fill: #fff;
+	width: 80;
+	height: 50;
+	stroke: #ddd;
+	stroke-width: 0.1;	
+}
+
+text.info-card {
+	alignment-baseline: text-before-edge;
+	font-size: 5;
 }
 
 text.band-name {
