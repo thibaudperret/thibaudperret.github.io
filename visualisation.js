@@ -49,7 +49,7 @@ class Graph {
 	constructor(data, info) {
 		this.data = data;
 		this.info = info;
-		this.year = 1991;
+		this.year = 1964;
 		this.xFeature = "energy";
 		this.yFeature = "danceability"
 		this.xScale = d3.scaleLinear().domain([0, 1])
@@ -179,12 +179,12 @@ function displayKeyPoint(d, i, graph, elem) {
 						   .enter();
 	
 	infoCard.append("rect")
-			.attr("x", graph.xScale(1) - 80)
+			.attr("x", graph.xScale(1) + 5)
 			.attr("y", (d, i) => i * 55)
 			.attr("class", "info-card");
 			
 	infoCard.append("text")
-			.attr("x", graph.xScale(1) - 80 + 5)
+			.attr("x", graph.xScale(1) + 5 + 5)
 			.attr("y", (d, i) => i * 55 + 10)
 			.attr("class", "info-card")
 			.text(d => d)
