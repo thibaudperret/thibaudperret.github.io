@@ -1,0 +1,390 @@
+body {
+	margin: 0;
+	font-family: 'PT Serif', serif;
+}
+
+div.article {
+	width: 40%;
+	min-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 40px;
+	padding: 40x;
+	line-height: 1.7em;
+}
+
+br {
+   display: block;
+   margin: 8px 0;
+}
+
+blockquote {
+  /* background: #f9f9f9; */
+  text-align: justify;
+  font-size: larger;
+  font-style: oblique;
+  color: #7b7373;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+blockquote:after {
+    content: no-close-quote;
+}
+
+figure {
+	margin: 5px 5px;
+}
+
+figcaption{
+	font-size: small;
+	width: 60%;
+	font-style: italic;
+	color: gray;
+	line-height: 1.4em;
+}
+
+blockquote p {
+  display: inline;
+}
+
+.article h1 {
+	color: #008a45;
+}
+
+.article h2 {
+	color: #005f2f;
+	text-align: center;
+}
+
+.article p {
+	text-align: justify;
+}
+
+/* FOR VISUALIZATION */
+
+div.small-vis {
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div.container {
+	width: 100%;
+	height: 80%;
+	display: ;
+	margin: auto;
+}
+
+div.right {
+	width: 20%;
+	min-width: 240px;
+	float: right;
+	padding: 50px 20px 0px 20px;
+}
+
+div.left {
+	width: 60%;
+	float: right;
+}
+
+
+line.axis {
+	stroke: #222;
+	stroke-linecap: square;
+}
+
+image.play {
+	pointer-events: none;
+}
+
+text {
+	font-family: 'Open Sans', sans-serif;
+	cursor: default;
+}
+
+img.info-vinyl {
+	float: left;
+	height: 20px;
+	width: 20px;
+	margin-bottom: 5px;
+}
+
+.card {
+	font-family: 'Open Sans', sans-serif;
+	margin: 15px 5px;
+	padding: 10px 10px;
+	background: #ffffff;
+	box-shadow: 0px 1px 4px rgba(0, 0, 0, .2);
+}
+
+.card p {
+	text-align: justify;
+	clear: left;
+}
+
+p.no-info {
+	text-align: justify;
+	font-style: italic;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.card a {
+	text-align: right;
+}
+
+a.link {
+	font-size: 10px;
+}
+
+text.axis {
+	fill: #222;
+	text-anchor: middle;
+}
+
+text.timeline_label{
+	fill: #222;
+	text-anchor: middle;
+}
+
+text.label {
+	font-size: 8;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.label.axis.pointer {
+	fill: #ddd;
+}
+
+.label.axis.pointer:hover {
+	fill: #222;
+}
+
+text.year {
+	font-size: 10;
+}
+
+text.legend {
+	/* fill: #222; */
+	font-size: 6;
+	alignment-baseline: middle;
+}
+
+circle.normal {
+	stroke: rgba(0, 0, 0, 0);
+	stroke-width: 0;
+}
+
+circle.selected {
+	stroke-width: 0;
+}
+
+.base-card {
+	fill: #fff;
+	width: 60;
+	height: 80;
+	stroke: #ddd;
+	stroke-width: 0.2;
+}
+
+rect.info-card {
+	fill: #fff;
+	width: 80;
+	height: 50;
+	stroke: #ddd;
+	stroke-width: 0.2;
+}
+
+text.info-card {
+	alignment-baseline: text-before-edge;
+	font-size: 5;
+}
+
+text.band-name {
+	font-size: 5;
+	font-weight: bold;
+}
+
+.cover-img {
+	width: 50;
+	height: 50;
+}
+
+text.song-name {
+	font-size: 5;
+}
+
+:not(.stroke).contemporary-rnb {
+	fill: #4FF27E;
+}
+
+:not(.stroke).british-rnb {
+	fill: #938DE3;
+}
+
+:not(.stroke).alternative-rnb {
+	fill: #E5625D;
+}
+
+:not(.stroke).new-jack-swing-rnb {
+	fill: #9c8855;
+}
+
+:not(.stroke).new-orleans-rnb {
+	fill: #ff67fd;
+}
+
+:not(.stroke).jump-blues {
+	fill: #5CC7D7;
+}
+
+:not(.stroke).blue-eyed-soul {
+	fill: #2E61D7;
+}
+
+:not(.stroke).early-rnb {
+	fill: #ff9e4e;
+}
+
+:not(.stroke).motown-rnb {
+	fill: #fff200;
+}
+
+path.stroke {
+	stroke-width: 2;
+}
+
+.stroke.contemporary-rnb {
+	stroke: #4FF27E;
+}
+
+.stroke.british-rnb {
+	stroke: #938DE3;
+}
+
+.stroke.alternative-rnb {
+	stroke: #E5625D;
+}
+
+.stroke.new-jack-swing-rnb {
+	stroke: #9c8855;
+}
+
+.stroke.new-orleans-rnb {
+	stroke: #ff67fd;
+}
+
+.stroke.jump-blues {
+	stroke: #5CC7D7;
+}
+
+.stroke.blue-eyed-soul {
+	stroke: #2E61D7;
+}
+
+.stroke.early-rnb {
+	stroke: #ff9e4e;
+}
+
+.stroke.motown-rnb {
+	stroke: #fff200;
+}
+
+.feature-label {
+	pointer-events: none;
+}
+
+polygon {
+	pointer-events: none;
+}
+
+text.feature-label {
+	fill: #ddd;
+	font-size: 7;
+}
+
+text.album-info {
+	fill: #ddd;
+	font-size: 8;
+	text-anchor: middle;
+}
+
+.album-info {
+	pointer-events: none;
+}
+
+rect#track {
+	fill: #eee;
+	stroke:black;
+	stroke-width:5;
+	stroke-opacity:0.9;
+}
+
+rect#thumb {
+	fill:transparent;
+	stroke:black;
+	stroke-width:1;
+}
+
+circle.timeline_year{
+	pointer-events: none;
+}
+
+rect.draggable{
+	cursor: e-resize;
+}
+
+/* Metro */
+
+text.genre {
+	cursor: pointer;
+}
+
+feFlood.contemporary-rnb {
+	flood-color: #4FF27E;
+}
+
+feFlood.british-rnb {
+	flood-color: #938DE3;
+}
+
+feFlood.alternative-rnb {
+	flood-color: #E5625D;
+}
+
+feFlood.new-jack-swing-rnb {
+	flood-color: #9c8855;
+}
+
+feFlood.new-orleans-rnb {
+	flood-color: #ff67fd;
+}
+
+feFlood.jump-blues {
+	flood-color: #5CC7D7;
+}
+
+feFlood.blue-eyed-soul {
+	flood-color: #2E61D7;
+}
+
+feFlood.early-rnb {
+	flood-color: #ff9e4e;
+}
+
+feFlood.motown-rnb {
+	flood-color: #fff200;
+}

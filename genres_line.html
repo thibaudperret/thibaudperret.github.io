@@ -1,0 +1,182 @@
+<html>
+<head>
+	<link rel="stylesheet" href="index-style.css" type="text/css" media="screen"/>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+	<svg version="1.1" viewBox="-10 -10 220 120" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" >
+		<defs>
+			<filter id="sofGlow" height="300%" width="300%" x="-75%" y="-75%">
+			<!-- Thicken out the original shape -->
+				<feMorphology operator="dilate" radius="0" in="SourceAlpha" result="thicken" />
+
+				<!-- Use a gaussian blur to create the soft blurriness of the glow -->
+				<feGaussianBlur in="thicken" stdDeviation="1" result="blurred" />
+
+				<!-- Change the colour -->
+				<feFlood result="glowColor" />
+
+				<!-- Color in the glows -->
+				<feComposite in="glowColor" in2="blurred" operator="in" result="softGlow_colored" />
+
+				<!--	Layer the effects together -->
+				<feMerge>
+					<feMergeNode in="softGlow_colored"/>
+					<feMergeNode in="SourceGraphic"/>
+				</feMerge>
+			</filter>
+		</defs>
+
+		<!-- Jump Blues-->
+		<line id="jump-blues-line" class="stroke jump-blues" x1="0" y1="60" x2="30" y2="60" stroke-width="0.5" />
+		<text id="jump-blues-text" class="genre jump-blues" x="7" y="65" style="font-size:3px">Jump Blues</text>
+
+		<!-- Early RnB-->
+		<line id="early-rnb-line" class="stroke early-rnb" x1="30" y1="60" x2="60" y2="60" stroke-width="0.5" />
+		<text id="early-rnb-text" class="genre early-rnb" x="37" y="65" style="font-size:3px">Early R&B</text>
+
+		<!-- Soul-->
+		<line id="soul-line", x1="60" y1="60" x2="90" y2="60", stroke="rgb(211, 211, 211)" stroke-width="0.5"/>
+		<text id="soul-text" x="73" y="65" style="font-size:3px", fill="rgb(211, 211, 211)">Soul</text>
+
+		<!-- Disco-->
+		<line id="disco-line", x1="90" y1="60" x2="120" y2="60", stroke="rgb(211, 211, 211)" stroke-width="0.5" />
+		<text id="disco-text" x="103" y="65" style="font-size:3px" fill="rgb(211, 211, 211)">Disco</text>
+
+		<!-- Contemporary R&B-->
+		<line id="contemporary-line", class="stroke contemporary-rnb", x1="120" y1="60" x2="160" y2="60", stroke-width="0.5" />
+		<text id="contemporary-text" class="genre contemporary-rnb" x="127" y="65" style="font-size:3px">Contemporary R&B</text>
+
+		<!-- new Orleans-->
+		<path
+		class="stroke new-orleans-rnb"
+		id="new-orleans-line"
+		d="M 40 60 L 50 20 L 80 20"
+		fill="none"
+		style="stroke-width:0.5"
+		/>
+		<text id="new-orleans-text" class="genre new-orleans-rnb" x="55" y="18" style="font-size:3px">New Orleans R&B</text>
+
+		<!-- Motown-->
+		<path
+		class="stroke motown-rnb"
+		id="motown-line"
+		d="M 55 60 L 61.675 33.3 L 80 33.3"
+		fill="none"
+		style="stroke-width:0.5"
+		/>
+		<text id="motown-text" class="genre motown-rnb" x="65" y="31.3" style="font-size:3px">Motown R&B</text>
+
+		<!-- British-->
+		<path
+		class="stroke british-rnb"
+		id="british-line"
+		d="M 62 60 L 65.25 46.6 L 80 46.6"
+		fill="none"
+		style="stroke-width:0.5"
+		/>
+		<text id="british-text" class="genre british-rnb" x="65" y="44.6" style="font-size:3px">British R&B</text>
+
+		<!-- New Jack Swing-->
+		<path
+		class="stroke new-jack-swing-rnb"
+		id="new-jack-swing-line"
+		d="M 130 60 L 136.675 33.3 L 170 33.3"
+		fill="none"
+		style="stroke-width:0.5"
+		/>
+		<text id="new-jack-swing-text" class="genre new-jack-swing-rnb" x="140.425" y="31.3" style="font-size:3px">New Jack Swing R&B</text>
+
+		<!-- Alternative RnB-->
+		<path
+		class="stroke alternative-rnb"
+		id="alternative-line"
+		d="M 140 60 L 143.25 46.6 L 170 46.6"
+		fill="none"
+		style="stroke-width:0.5"
+		/>
+		<text id="alternative-text" class="genre alternative-rnb" x="148" y="44.6" style="font-size:3px">Alternative R&B</text>
+
+		<g id="decades-dots" fill="rgb(0, 0, 0)">
+			<circle cx="30"  cy="60" r="1" />
+			<circle cx="60"  cy="60" r="1" />
+			<circle cx="90"  cy="60" r="1" />
+			<circle cx="120" cy="60" r="1" />
+			<circle cx="160" cy="60" r="1" />
+		</g>
+
+		<g id="decades-texts" fill="rgb(0, 0, 0)">
+			<text x="29",  y="64", style="font-size:2px">50s</text>
+			<text x="59",  y="64", style="font-size:2px">60s</text>
+			<text x="89",  y="64", style="font-size:2px">70s</text>
+			<text x="119",  y="64", style="font-size:2px">80s</text>
+			<text x="159",  y="64", style="font-size:2px">10s</text>
+		</g>
+
+		<g id="branch-genres" fill="rgb(0, 0, 0)">
+			<rect x="39" y="59" width="2" height="2"/>
+			<rect x="54" y="59" width="2" height="2"/>
+			<rect x="61" y="59" width="2" height="2"/>
+			<rect x="129" y="59" width="2" height="2"/>
+			<rect x="139" y="59" width="2" height="2"/>
+		</g>
+	</svg>
+	<style>
+		text.genre {
+			cursor: pointer;
+		}
+		
+		feFlood.contemporary-rnb {
+			flood-color: #4FF27E;
+		}
+
+		feFlood.british-rnb {
+			flood-color: #938DE3;
+		}
+
+		feFlood.alternative-rnb {
+			flood-color: #E5625D;
+		}
+
+		feFlood.new-jack-swing-rnb {
+			flood-color: #9c8855;
+		}
+
+		feFlood.new-orleans-rnb {
+			flood-color: #ff67fd;
+		}
+
+		feFlood.jump-blues {
+			flood-color: #5CC7D7;
+		}
+
+		feFlood.blue-eyed-soul {
+			flood-color: #2E61D7;
+		}
+
+		feFlood.early-rnb {
+			flood-color: #ff9e4e;
+		}
+
+		feFlood.motown-rnb {
+			flood-color: #fff200;
+		}
+	</style>
+	<script>
+		d3.selectAll("text.genre")
+		  .on("mouseover", function() {
+			  d3.select("feFlood")
+			    .attr("class", () => {
+					var class_ = d3.select(this).attr("class");
+					return class_.substring(6, class_.length);
+				});
+			  d3.select(this)
+			    .attr("filter", "url(#sofGlow)");
+		  })
+		  .on("mouseout", function() {
+			  d3.select(this)
+				.attr("filter", "");
+		  });
+	</script>
+</body>
+</html>

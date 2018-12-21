@@ -3,10 +3,14 @@
 	<meta charset="utf-8">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
 	<script src="lib/jquery.min.js" type="text/javascript"></script>
 	<script src="https://d3js.org/d3.v5.min.js"></script>
 	
-	<link rel="stylesheet" href="style.css" type="text/css" media="screen"/>
+	<link rel="icon" href="favicon.ico" />
+	<link rel="stylesheet" href="index-style.css" type="text/css" media="screen"/>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
 	
 	<title>Evolution of R&B</title>
 	<meta name="author" content="Thibaud Perret, Lucas Massemin, Raphaël 'Mad' Madillo">
@@ -14,6 +18,469 @@
 </head>
 <body>
 	<script src="visualisation.js"></script>
-	<svg id="vis" viewBox="-20 -20 240 240" width="100%" height="100%" style="background:#fff"></svg>
+	<script src="small-vis.js"></script>
+	<div class="article">
+		<h1 id="title">Evolution of R&B</h1>
+		<p id="introduction">Rhythm and Blues has known a popularity increase since its creation in the early 1940s, so well that it is nowadays one of the major musical genre. Represented today by artists such as Beyonce, Rihanna and Usher, it is worth noting that its characteristics have greatly evolved over the years, at a point that it became necessary to decompose it into subgenres.<br/>
+							 From Louis Jordan to Bruno Mars, we aim at exploring this large cultural heritage both musically and historically, one subgenre at a time.<br/><br/>
+							 Below is a timeline of the different subgenres, click on one of the subgenre name to go directly to its section !
+		</p>
+	</div>
+	<div style="height:40%">
+		<svg version="1.1" viewBox="-10 -10 190 90" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" >
+			<defs>
+				<filter id="sofGlow" height="300%" width="300%" x="-75%" y="-75%">
+				<!-- Thicken out the original shape -->
+					<feMorphology operator="dilate" radius="0" in="SourceAlpha" result="thicken" />
+
+					<!-- Use a gaussian blur to create the soft blurriness of the glow -->
+					<feGaussianBlur in="thicken" stdDeviation="1" result="blurred" />
+
+					<!-- Change the colour -->
+					<feFlood result="glowColor" />
+
+					<!-- Color in the glows -->
+					<feComposite in="glowColor" in2="blurred" operator="in" result="softGlow_colored" />
+
+					<!--	Layer the effects together -->
+					<feMerge>
+						<feMergeNode in="softGlow_colored"/>
+						<feMergeNode in="SourceGraphic"/>
+					</feMerge>
+				</filter>
+			</defs>
+
+			<!-- Jump Blues-->
+			<line id="jump-blues-line" class="stroke jump-blues" x1="0" y1="60" x2="30" y2="60" stroke-width="0.5" />
+			<text id="jump-blues-text" class="genre jump-blues" x="7" y="65" style="font-size:3px">Jump Blues</text>
+
+			<!-- Early RnB-->
+			<line id="early-rnb-line" class="stroke early-rnb" x1="30" y1="60" x2="60" y2="60" stroke-width="0.5" />
+			<text id="early-rnb-text" class="genre early-rnb" x="37" y="65" style="font-size:3px">Early R&B</text>
+
+			<!-- Soul-->
+			<line id="soul-line", x1="60" y1="60" x2="90" y2="60", stroke="rgb(211, 211, 211)" stroke-width="0.5"/>
+			<text id="soul-text" x="73" y="65" style="font-size:3px", fill="rgb(211, 211, 211)">Soul</text>
+
+			<!-- Disco-->
+			<line id="disco-line", x1="90" y1="60" x2="120" y2="60", stroke="rgb(211, 211, 211)" stroke-width="0.5" />
+			<text id="disco-text" x="103" y="65" style="font-size:3px" fill="rgb(211, 211, 211)">Disco</text>
+
+			<!-- Contemporary R&B-->
+			<line id="contemporary-line", class="stroke contemporary-rnb", x1="120" y1="60" x2="160" y2="60", stroke-width="0.5" />
+			<text id="contemporary-text" class="genre contemporary-rnb" x="127" y="65" style="font-size:3px">Contemporary R&B</text>
+
+			<!-- new Orleans-->
+			<path
+			class="stroke new-orleans-rnb"
+			id="new-orleans-line"
+			d="M 40 60 L 50 20 L 80 20"
+			fill="none"
+			style="stroke-width:0.5"
+			/>
+			<text id="new-orleans-text" class="genre new-orleans-rnb" x="55" y="18" style="font-size:3px">New Orleans R&B</text>
+
+			<!-- Motown-->
+			<path
+			class="stroke motown-rnb"
+			id="motown-line"
+			d="M 55 60 L 61.675 33.3 L 80 33.3"
+			fill="none"
+			style="stroke-width:0.5"
+			/>
+			<text id="motown-text" class="genre motown-rnb" x="65" y="31.3" style="font-size:3px">Motown R&B</text>
+
+			<!-- British-->
+			<path
+			class="stroke british-rnb"
+			id="british-line"
+			d="M 62 60 L 65.25 46.6 L 80 46.6"
+			fill="none"
+			style="stroke-width:0.5"
+			/>
+			<text id="british-text" class="genre british-rnb" x="65" y="44.6" style="font-size:3px">British R&B</text>
+
+			<!-- New Jack Swing-->
+			<path
+			class="stroke new-jack-swing-rnb"
+			id="new-jack-swing-line"
+			d="M 130 60 L 136.675 33.3 L 170 33.3"
+			fill="none"
+			style="stroke-width:0.5"
+			/>
+			<text id="new-jack-swing-text" class="genre new-jack-swing-rnb" x="140.425" y="31.3" style="font-size:3px">New Jack Swing R&B</text>
+
+			<!-- Alternative RnB-->
+			<path
+			class="stroke alternative-rnb"
+			id="alternative-line"
+			d="M 140 60 L 143.25 46.6 L 170 46.6"
+			fill="none"
+			style="stroke-width:0.5"
+			/>
+			<text id="alternative-text" class="genre alternative-rnb" x="148" y="44.6" style="font-size:3px">Alternative R&B</text>
+
+			<g id="decades-dots" fill="rgb(0, 0, 0)">
+				<circle cx="30"  cy="60" r="1" />
+				<circle cx="60"  cy="60" r="1" />
+				<circle cx="90"  cy="60" r="1" />
+				<circle cx="120" cy="60" r="1" />
+				<circle cx="160" cy="60" r="1" />
+			</g>
+
+			<g id="decades-texts" fill="rgb(0, 0, 0)">
+				<text x="29",  y="64", style="font-size:2px">50s</text>
+				<text x="59",  y="64", style="font-size:2px">60s</text>
+				<text x="89",  y="64", style="font-size:2px">70s</text>
+				<text x="119",  y="64", style="font-size:2px">80s</text>
+				<text x="159",  y="64", style="font-size:2px">10s</text>
+			</g>
+
+			<g id="branch-genres" fill="rgb(0, 0, 0)">
+				<rect x="39" y="59" width="2" height="2"/>
+				<rect x="54" y="59" width="2" height="2"/>
+				<rect x="61" y="59" width="2" height="2"/>
+				<rect x="129" y="59" width="2" height="2"/>
+				<rect x="139" y="59" width="2" height="2"/>
+			</g>
+		</svg>
+		<script>
+			d3.selectAll("text.genre")
+			  .on("click", function() {
+				  var link = d3.select(this).attr("class");
+				  link = link.substring(6, link.length);
+				  console.log(link);
+				  document.getElementById(link).scrollIntoView();
+			  })
+			  .on("mouseover", function() {
+				  d3.select("feFlood")
+					.attr("class", () => {
+						var class_ = d3.select(this).attr("class");
+						return class_.substring(6, class_.length);
+					});
+				  d3.select(this)
+					.attr("filter", "url(#sofGlow)");
+			  })
+			  .on("mouseout", function() {
+				  d3.select(this)
+					.attr("filter", "");
+			  });
+		</script>
+	</div>
+	<div class="article">
+		<h2 id="jump-blues">Jump Blues, premise of Rhythm and Blues</h2>
+		<p id="jump-blues">The Jump Blues, born in early 1940’s, is a bridge between blues and big band jazz. It is composed with an uptempo blues and usually a vocalist in front of a large, horn-driven orchestra. Note that the latter orchestra is sometimes replaced by a medium sized combo with multiple horns. <br/>
+		Additionally, Jump Blues can be characterized by a driving rhythm, intensely shouted vocals and honking tenor saxophone solos. Those characteristics greatly influenced Rhythm and Blues and Rock and Roll, which is one of the reasons why Jump Blues is said to be a premise of Rhythm and Blues.<br/>
+		Interestingly enough, the purpose of the intense energy generated by vocals and saxophone was actually to keep the attention of dance hall patrons in the crowded rooms, because they were the ones to decide whether to produce the band again. Moreover, that energy compensated the reduced size of bands at that time, reduced due to the belt-tightening of the World War II period. <br/>
+		</p>
+		<p id="jump-blues">The major hits in this genre were listed in the Billboard chart’s “Race Records” category, named after the fact that the music was made by black people.<br/>  
+		Among the artists having hit the Billboard and having contributed to the style golden periode (40s-50s), one can name Louis Jordan and his Tympany Five band, Big Joe Turner and Roy Brown. If we consider the most representative songs, on the other hand, we discover  "<b class="song-title">Shake, Rattle, And Roll</b>" by Big Joe Turner, “<b class="song-title">Hand Clappin'</b>” by Red Prysock and “<b class="song-title">Rockin' At Midnight</b>” by Roy Brown for instance.
+		</p>
+	</div>
+	<div class="small-vis" style="height:30%">
+		<svg id="card-vis1" viewBox="-20 -10 390 120" height="100%" width="100%"></svg>
+	</div>
+	<div class="article">
+		<p id="jump-blues">As R&B slowed down and got funkier in the early Sixties, jump blues faded from existence. However, a renewal occurs in the 90s with the ‘90s Swing Revival’ scene known as neo-swing.
+		</p>
+	</div>
+	<div class="article">
+		<h2 id="early-rnb"> Early Rhythm and Blues, where it all started </h2>
+		<p id="early-rnb">In 1949, the billboard changed the name of the ‘Race Records’ chart to ‘Rhythm & Blues Records’ and categorized it as music of African American Origin destined to a black audience.
+		The songs and artists that hit the top at that time are nowadays classified in the Early R&B musical genre.<br/>
+		Musically, Early R&B is really close to Jump Blues as it keeps its tempo and its drive. On the other hand, its instrumentation is sparer and the emphasis is on the song, not on improvisation.<br/>
+		The early development of R&B occurred in tandem with the second migration of African Americans who moved from the Southern and rural regions of the United States during and after World War II.
+		That resulted in an increase of African-American populations in cities like Los Angeles, Chicago and New York.<br/>
+		Early R&B period started in early 50s and ended in early 60s. Several artists hit the top in that genre, and were celebrated as its major ambassadors. 
+		We can name Ruth Brown also known as “The queen of R&B” and her song “<b class="song-title">Teardrops from My Eyes</b>” which made the Atlantic Record success with its first million-selling record. 
+		One can also think of Fats Domino in 1950 with his greatest hit “<b class="song-title">Blueberry hill</b>”, a mix between Rhythm and blues and early Rock n roll’ that would later join Grammy Hall of Fame.
+		Last but not least, Johnny Otis, nicknamed  “the godfather of Rhythm and Blues”, one of the most successful white in the world of black music and whose song “<b class="song-title">Double Crossing Blues</b>” is a representative title in early R&B music.
+	</div>
+	<div class="small-vis" style="height:30%">
+		<svg id="card-vis2" viewBox="-20 -10 390 120" height="100%" width="100%"></svg>		
+	</div>
+	<div class="article">
+		<p id="early-rnb">In late 1950s some changes occured in R&B. <br/>
+		Artists began to include electric instruments in their songs, the first to make the step being  Ike Turner in 1954 with his song “<b class="song-title">Cubano Jump</b>”.<br/>
+		The African-American music affiliated with civil rights activism, the best example of this turn is probably Sam Cooke's “<b class="song-title">A change is gonna come</b>” song, one of the most important songs of the civil rights era. Another remarkable song in this direction is “<b class="song-title">Keep on Pushing</b>” by The Impressions,named by Dr. King as the Movement’s unofficial anthem. 
+		Finally, a branch of R&B evolves in what we call ‘Soul’ today. Note that the songs affiliated to the civil rights activism mentioned above are actually classified as soul songs.
+		</p>
+	</div>
+	<div class="small-vis" style="height:30%">
+		<svg id="card-vis2-2" viewBox="-20 -10 390 120" height="100%" width="100%"></svg>		
+	</div>
+	<div class="article">
+		<blockquote>If he can preach it, we can sing it ! <br/>- Dr. King</blockquote> 
+		<p id="early-rnb">The early R&B will later be quoted as Urban oldies especially by radios like 98.7 Kiss FM that was broadcasting urban oldies music on a regular basis in the 90s.
+		</p>
+	</div>
+	<div class="article">
+		<h2 id="new-orleans-rnb"> New Orleans Rhythm and Blues, a South flavor </h2>
+		<p id="new-orleans-rnb">
+		In early 50s to mid 50s, a new style emerged in New Orleans. A Rhythm and Blues including New Orleans sound: rollicking pianos, complex rhythms, and, much of the time, a certain melancholy tone. 
+		<br/>The complex rhythms were in part due to the second line, which was named after the second line of marchers at New Orleans mardi gras parades and jazz funerals.<br/></p> 
+		<center>
+			<audio controls preload="metadata" style=" width:300px;">
+				<source src="./stantonmoore02.mp3" type="audio/mpeg">
+					Your browser does not support the audio element.
+				</audio><br />
+		</center>
+		<p>
+		Professor Longhair (from his real name Henry Roeland Byrd) was an early initiator of this particular genre, his song “<b class="song-title">Go to the Mardi Gras</b>” represents it well by including an  easily recognizable second line rhythm. Another New Orleans R&B was released by Shirley & Lee (from their names Shirley Goodman and Leonard Lee) in 1952, their song named  “<b class="song-title">I’m Gone</b>” contained the special melancholy tone that now characterise the movement.
+		</p>
+	</div>
+	<div class="small-vis" style="height:30%">
+		<svg id="card-vis9" viewBox="-20 -10 390 120" height="100%" width="100%"></svg>		
+	</div>
+	<div class="article">
+		<h2 id="motown-rnb"> Motown, the story of a successful label defining its own R&B </h2>
+		<p id="motown-rnb">
+		Motown is a record label born in 1959 in Detroit, that will symbolise the irresistible success-story of African-American music in the sixties. Indeed,  seven year after its creation, in 1966, it employed 450 persons and had a gross income of $20 million.<br/>
+		Motown music fingerprint was that their records contained the same core session musicians, which stabilized their musical style. The musicians gave sound's basic rhythmic foundation of bouncing bass and echoing drums. Their arrangements were frequently lush and elaborate, adding strings, horns, woodwinds, piano, extra percussion, or whatever else might enhance the music's urbane stylishness. 
+		Those innovations, put together with the label musical stability, had people to think of motown as a musical genre rather than as a label.<br/></p>
+		<center>
+			<figure>
+				<img src="motown.jpg" alt="">
+				<figcaption>Kim Weston (with microphone) and Other Early Motown Entertainers, 1963</figcaption>
+			</figure>
+		</center>
+		<p>
+		The adventure began with Barrett Strong releasing the first Motown hit “<b class="song-title">Money (That's What I Want)</b>” in August 1959.
+		Motown further signed many up and coming artists including Marvin Gaye, The Temptations and Stevie Wonder. <br/>
+		The Supremes, led by Diana Ross, was the most successful Motown group, and has been actually the most successful female singing group in the history of the recording industry. One of its biggest hits in 1964 was “<b class="song-title">Baby Love</b>“, leading the path to a R&B closer to Pop music , opposite to Early R&B which was closer to what we categorize as Rock n’ Roll. 
+		Diana Ross’ song represents well Motown music by mixing soul and pop classics.<br/>
+		The style evolved over the years, Motown recorded the Jackson 5 and “<b class="song-title">I Want You Back</b>” in 1969 with a more funky bubblegum-soul that began to break away from established Motown formulas.<br/>
+	</div>
+	<div class="small-vis" style="height:30%">
+		<svg id="card-vis3" viewBox="-20 -10 390 120" height="100%" width="100%"></svg>
+	</div>
+	<div class="article">
+		<p id="motown-rnb">
+		The story of Motown records ended in 1988 when the label was sold to MCA for $61 million dollars. However, note that  the artists continued to record under Motown label.
+		</p>
+	</div>
+	<div class="article">
+		<h2 id="british-rnb"> British R&B, the Rhythm and Blues from across Atlantic </h2>
+		<p id="british-rnb">
+		The Rhythm and Blues movement from the 50s in the United States highly influenced the British youth. In early 60s the mod (term derived from ‘modernist’) subculture was born, consisting in fashion style-conscious, motor scooters passion and also music including a new genre, British R&B. <br/></p>
+		<center>
+			<div>
+				<figure>
+					<img src="Kinks.jpg" alt="" height="200">
+					<img src="RollingStones.jpg" alt="" height="200">
+					<figcaption>Famous British R&B albums from the 60s</figcaption>
+				</figure>
+			</div>
+		</center>
+		<p>
+		British RnB was Influenced by both Jump Blues and British Blues songs, we can cite “<b class="song-title">Hoochie Coochie</b>” from ‘Blues Incorporated’ for example. Led by Alexis Korner, the band released “R&B from the Marquee”, an album not so successful commercially but that would inspire the future R&B British bands.<br/>
+		Among those young new bands, there are The Who and their debut album that include explosive songs like the very well known “<b class="song-title">My Generation</b>“ under the slogan ‘Maximum R&B’. The song is a pure product of mod subculture and boasts clear influences of American rhythm and blues, most explicitly in the call and response form of the verses.
+		</p>
+	</div>
+	<div class="small-vis" style="height:30%">
+		<svg id="card-vis4" viewBox="-20 -10 390 120" height="100%" width="100%"></svg>		
+	</div>
+	<div class="article">
+		<p>
+		The Beatles was another band influenced by R&B,  for example with their cover of “<b class="song-title">You Really Got a Hold on Me</b>”  recorded in their early career in 1963. This song is a cover of The Miracles song “<b class="song-title">You've Really Got a Hold on Me</b>” written by Smokey Robinson released on Motown's Tamla label (Motown label used outside US) that shows British R&B inspiration from US R&B artist.
+		Beyond of the R&B signature, we also note the early signature of what would be called the “british invasion”. <br/>
+		</p>
+	</div>	
+	<div class="small-vis" style="height:30%">
+		<svg id="card-vis4-2" viewBox="-20 -10 390 120" height="100%" width="100%"></svg>
+	</div>
+	<div class="article">
+		<p id="british-rnb">
+		British R&B, highly correlated with British early Rock n’ Roll, was the strange mix between British youngsters suit in tailor-made suits and African-American originated Rhythm and Blues music. 
+		It is interesting to note that the latter music was brought to the UK by African American servicemen stationed in Britain during the Cold War.
+		</p>
+	</div>
+	<div class="article">
+		<h2 id="blue-eyed-soul">Blue-eyed soul, the white colored R&B</h2>
+		<p id="blue-eyed-soul">
+		The term 'blue-eyed soul' was coined by Georgie Woods, a black disc jockey on the WDAS radio station in Philadelphia. Woods invented the term to categorise the 
+		“Righteous Brothers”, whose records were played on R&B radio stations before black disc jockeys and programme directors realised they were actually white people.<br/>
+		</p>
+		<blockquote>You should have seen Rocky G's face drop when he found out they weren't really Negroes.<br/>- WWRL's general manager about his most acute black disc jockey</blockquote>
+		<p id="be-soul">
+		Back in 1960s, R&B movement split and produced a branch characterized by slower rhythmics, getting away from early R&B and promoting strong voice. The term “blue-eyed soul” has been used to describe R&B with white skinned vocalists, influenced by the latter music branch.<br/>
+		We cannot talk about blue eyed soul without mentioning  the “Righteous Brothers” and their emotionally charged vocals like in “<b class="song-title">You've Lost That Lovin' Feelin'</b>” song.
+		The latter is notably the most-played song on American radio and television in the 20th century as the organization Broadcast Music ranked it.
+		There was also Timi Yuro, “The little girl with the big voice” that a lot of listeners would easily trust as black skinned with her million-selling debut single "<b class="song-title">Hurt</b>" released in 1961.
+		The blue eyed soul further includes songs from the famous artist David Bowie in the 70s and its “<b class="song-title">Young Americans</b>” title, representative of the genre.<br/>
+		</p>
+	</div>
+	<div class="small-vis" style="height:30%">
+		<svg id="card-vis5" viewBox="-20 -10 390 120" height="100%" width="100%"></svg>
+	</div>
+	<div class="article">
+		<p id="blue-eyed-soul">
+		Finally, by the Eighties, black entertainment got dominated by disco, a racially homogenous music reflecting the tastes of an audience which had, perhaps, consigned real soul — black or white — to the unfashionable pages of history.
+		</p>
+	</div>
+	<div class="article">
+		<h2 id="contemporary-rnb">Contemporary R&B, the revival of R&B</h2>
+		<p id="contemporary-rnb">
+		After the demise of disco in the 80s, R&B renewed with success. Contemporary R&B is a mix between many elements of hip-hop, soul, R&B and funk.
+		Its new musical fingerprint lies in the use of drums machine-backed rhythms like the 808 (stands for Roland TR-808) and a polished record production style.
+		Note that the 808, created in 1980, has been used on more hit records than any other drum machine.<br/>
+		
+		The pioneer in the genre is the album “Off the Wall” by Michael Jackson, which opened the new area of R&B from the first song “<b class="song-title">Don't Stop 'Til You Get Enough</b>” to the end. The album is characterized by a dazzling array of disco beats, funk guitars, clean mainstream pop and unashamed -therefore affecting-  schmaltz* that is utterly thrilling in its utter joy. 
+		The Mariah Carey debut single “<b class="song-title">Vision of Love</b>” also brought a significant novelty in Contemporary R&B by the use of melisma (singing of a single syllable of text while moving between several different notes in succession). 
+		The Rolling Stones magazine said from the song that “the fluttering strings of notes that decorate songs like ‘Vision of Love’ inspired the entire American Idol vocal school, for better or worse, and virtually every other female R&B singer since the nineties.”</p>
+		<center>
+			<audio controls preload="metadata" style=" width:300px;">
+				<source src="./Vision_of_Love.ogg" type="audio/mpeg">
+					Your browser does not support the audio element.
+				</audio><br />
+		</center>
+		<p>
+		Finally, we can also appreciate the first grammy awarded album in the newly created section “Best R&B Album” (1984). “II” by “Boyz II Men” (produced under Motown label) is again a highly vocal album with for example the massive commercially successful track “<b class="song-title">I'll Make Love to You</b>”. <br/>
+		</p>
+	</div>
+	<div class="small-vis" style="height:30%">
+		<svg id="card-vis6" viewBox="-20 -10 390 120" height="100%" width="100%"></svg>		
+	</div>
+	<div class="article">
+		<p>
+		We note that, in the 90s, contemporary R&B made a step in direction of hip-hop both musically and in the public image. The Boyz II Men, for instance, started touring with MC Hammer (highly successful rapper) during “Too Legit to Quit” tour in 1992, and featured with LL Cool J for the song “<b class="song-title">Hey Lover</b>”.<br/>
+		</p>
+	</div>
+	<div class="small-vis" style="height:30%">
+		<svg id="card-vis10" viewBox="-20 -10 390 120" height="100%" width="100%"></svg>
+	</div>
+	<div class="article">
+		<p id="contemporary-rnb">
+		Contemporary R&B is still today an highly listened-to genre in music, its ambassadors are for instance Drake, Rihanna and Alicia Keys.
+		The shift that Rhythm and Blues took with contemporary has been criticized by some music actors, for example George Nelson, music editor to Billboard, describes the development of retail outlets for R&B records in a book named 'The Death of Rhythm and Blues'.
+		</p>
+	</div>
+	
+	<div class="article">
+		<h2 id="new-jack-swing-rnb">New Jack Swing, a punchy version of Contemporary R&B</h2>
+		<p id="new-jack-swing-rnb">
+		New Jack Swing (a.k.a Swingbeat) really goes further than Contemporary R&B in direction of Hip-Hop. The result is a music style in middle of both genres that includes hip-hop rhythms, samples and production techniques with sung chorus and melodic qualities of soul.
+		The name "New Jack" was a slang term meaning “the one who is new to something and lacks experience and style in it”.<br/>
+		
+		We cannot talk about New Jack Swing without mentioning the acknowledged "King of New Jack Swing” Teddy Riley, a producer/songwriter from Harlem New York and also member of the “Guy” trio.
+		He was the one to coin the “New Jack Swing” term in 1987 :  "I define the term as a new kid on the block who's swingin' it," and later "In most people's definition it's music that puts the ingredients of gospel, rap, R&B and pop-jazz together, with a little funk here and there if you want to add it."</p>
+		<blockquote>I define the term as a new kid on the block who's swingin' it<br/>- Teddy Riley, inventor of New Jack Swing</blockquote>
+		<p>
+		In 1988, the young Teddy Ridley (only twenty years old then) and his R&B group “Guy” record their first eponym album.It is considered as a classic in New Jack Swing, especially thanks to his first track “<b class="song-title">Groove Me</b>”.<br/>
+		
+		Another early New Jack Swing album was Janet Jackson “Control” album, including the song “<b class="song-title">Nasty</b>” which is a concentrate of energy. The overall album is qualified by Richard J. Ripani (author of The New Blue Music: Changes in Rhythm & Blues, 1950–1999) as ‘one of the most influential albums in the history of rhythm and blues and the first album to bridge the gap between R&B and rap music.’<br/>
+		
+		The most successful New Jack Swing album finally comes in 1991 with Michael Jackson again and his 8th studio album “Dangerous” with the majority of songs produced by Teddy Ridley, the New Jack Swing pioneer. Among its celebrated titles, “<b class="song-title">Remember the Time</b>” is a dance-oriented, new jack swing-flavored title awarded as Best R&B/Soul Single at 1993 Soul Train Music Awards.<br/>		
+		</p>
+	</div>
+	<div class="small-vis" style="height:30%">
+		<svg id="card-vis7" viewBox="-20 -10 390 120" height="100%" width="100%"></svg>
+	</div>
+	<div class="article">
+		<p id="new-jack-swing-rnb">
+		We can highlight a recent title “<b class="song-title">Finesse (remix)</b>” by Bruno Mars featuring Cardi B.that really feels like a throwback to the 90s, the golden period of New Jack Swing.
+		</p>
+	</div>
+	<div class="small-vis" style="height:30%">
+		<svg id="card-vis11" viewBox="-20 -10 390 120" height="100%" width="100%"></svg>		
+	</div>
+	<div class="article">
+		<h2 id="alternative-rnb">Alternative R&B, the new exploration of R&B</h2>
+		<p id="alternative-rnb">
+		Alternative R&B, also referred to as PBR&B (a play on Pabst Blue Ribbon, the US hipster beer of choice) or alt-R&B is the logical follow up to contemporary R&B. 
+		With its lyrics focused on popping bottles of expensive champagne and partying with beautiful models (see R Kelly’s album from 2012, Black Panties). Fans and artists became bored of the overuse of classic contemporary R&B model.
+		Consequently, some artists tried to get away this movement and promoted a new music style characterized by a subtle, smooth, and reverberated production, heavy bass and often reverberated vocals. The latter was born from cross influences from Dream Pop, Future Garage, and UK Bass for their reverberated, airy, and bass-heavy sound.
+		We can often notify thoughtful, dark lyrics that are stepping away from contemporary R&B.<br/>
+		</p>
+		<blockquote>R&B had been pigeonholed by a lot of music fans as this bland, fairly tiresome music form, which wasn’t particularly innovating and was dominated by a few artists that frankly had little left to say<br/>- George Ergatoudis, Head of Music at BBC Radio 1 and 1Xtra</blockquote>
+		<p id="alternative-rnb">
+		Artists like Kelela took part in this newly created genre that synthesizes contemporary R&B and progressive electronic music with an aptitude for prompting club play as much as bedroom listening.
+		Her title “<b class="song-title">Rewind</b>” promoted a cloudy atmosphere that proved the dream pop influence over the production.
+		The full album provided a more interesting lyrical content as the album described the beginning, middle, and end of a relationship in reverse order. <br/>
+		
+		The Weeknd, an artist that really was one of the first PBR&B artist started in 2011 with mixtapes that were featured with MGMT or Radiohead, hence really cross genre and getting away from classic R&B.
+		The album “Trilogy” combined its 3 first mixtapes, notably songs like “<b class="song-title">House of Balloons</b>” that synthesize well the early steps of alternative R&B.<br/>
+		
+		Finally we can remark that UK vocalists have a predominance in this movement with alt-R&B ambassadors like Mahalia, IAMDBB (closer to recent Trap movement for IAMDDB) or Jorja Smith.
+		The title “<b class="song-title">Blue Lights</b>” from Jorja Smith album “Lost & Found” (2018) really embed the greats vocals that where present in R&B/soul of the 60s.<br/>
+		</p>
+	</div>
+	<div class="small-vis" style="height:30%">
+		<svg id="card-vis8" viewBox="-20 -10 390 120" height="100%" width="100%"></svg>
+	</div>
+	<div class="article">
+		<p id="alternative-rnb">
+		Some critics have been emitted about this title of “alternative R&B” like FKA Twigs that told to The Guardian “Fuck Alternative R&B”. Her frustration relates the frustration of numerous artists and fans, that R&B, as always, kept its initially explicite and later implicit mean for black music.
+		Moreover, they denounce that alt-R&B is a genre that tends to include musics that are hardly related by their musicality but more by the skin color of the artists.
+		</p>
+	</div>	
+	<div class="article">
+		<h2 id="conc">Conclusion</h2>
+		<p id="conc">
+		As a conclusion, we can cite the very well resume of Rhythm and Blues in its integrality from Mark Puryear for Folklife magazine:<br/>
+		“The history of R&B and the breadth of what it encompasses—socially, commercially, and artistically—suggests that it is not monolithic. It tells a complex story of many strands and experiences. A distinctly African American music drawing from the deep tributaries of African American expressive culture, it is an amalgam of jump blues, big band swing, gospel, boogie, and blues that was initially developed during a thirty-year period that bridges the era of legally sanctioned racial segregation, international conflicts, and the struggle for civil rights.
+		Its formal qualities, stylistic range, marketing and consumption trends, and worldwide currency today thus reflect not only the changing social and political landscapes of American race relations, but also urban life, culture, and popular entertainment in mainstream America.”
+		</p>
+	</div>
+	<div class="article">
+		<h2>Album comparison</h2>
+		<p>In this section we will try to analyse the difference between the diverse R&B subgenre that we have analyze to further explore the evolution of music features in its album classics. To get the official definition of the features, please refer to <a href="https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/">this website.</a><br/></p>
+		<h3>II vs New Orleans Piano</h3>
+		<p>‘II’ is an album produced by the famous ‘Boys II Men’ band classified as contemporary R&B. On the other hand, ‘New Orleans Piano’ was produced by Professor Longhair during the New Orleans R&B golden age. 
+The genres’ golden ages are relatively distant in time, a distance that can be easily recognized by the instruments used to produce the music.
+More specifically, contemporary R&B artists were discovering and experiencing new drums such as 808, but New Orleans artists had not much to discover and focused on changing the style while keeping the same instruments.
+The difference can be witnessed through the ‘acousticness’ feature, lower for music including electronic instruments. De facto, the acousticness is higher for New Orleans Piano.</p>
+	</div>
+	<div class ="small-vis" style="height:50%">
+		<svg id="alb-vis1" viewBox="-110 -110 220 220" height="100%" width="100%"></svg>
+	</div>
+	<div class="article">
+		<h3>Louis Jordan's Best Of vs Young American</h3>
+		<p>We further compare the jump blues from the 40s with Louis Jordan and His Tympany Five, with the latter blue-eyed soul from 1975 with David Bowie and his album Young American.
+What we can observe in this chart is the low valence (equivalent to ‘positiveness’) and danceability of blue-eyed soul compare to the jump blues. This comes from the fact that blue eyed soul is a type of soul music and that by definition soul music is characterized by highlighting more vocals and putting rhythmic aside compare to Jump Blues that is highly danceable and positive to make the whole world a dance hall in the 50s.
+We also observe a way higher accoustiness for jump blues album from the fact that during 60s, Rhythm & Blues has been “plugged in” passing from acoustic to electric guitars.</p>
+	</div>
+	<div class ="small-vis" style="height:50%">
+		<svg id="alb-vis2" viewBox="-110 -110 220 220" height="100%" width="100%"></svg>
+	</div>
+	<div class="article">
+		<h3>Guy vs Lost and Found</h3>
+		<p>Now we will see the notables differences that are observable by comparing typical album of New Jack Swing and Alternative R&B.
+First off all the Lost and Found album, part of alternative R&B genre, show less danceability, energy and valence. More negative feelings and expression of uneasiness as in the song Blue Lights explain these low values compare to New Jack Swing that, has describe by its creator Teddy Riley wants to make swing all New York City in the late 80s early 90s.
+The plot also highlight the disparity in acousticness between highly electronic feelings of synthesizer and drums machine-backed rhythms of New Jack Swing and the general smoother electronic sounds and lighter synthesizers in Alternative R&B.</p>
+	</div>
+	<div class ="small-vis" style="height:50%">
+		<svg id="alb-vis4" viewBox="-110 -110 220 220" height="100%" width="100%"></svg>
+	</div>
+	<div class="article">
+		<h3>Off The Wall VS Trilogy</h3>
+		<p>Here, we compare “Off the wall” by Michael Jackson (contemporary R&B) and “Trilogy” by The Weeknd (alternative R&B). As mentioned before, Alternative RnB is characterized by dark lyrics and style whereas contemporary R&B is funkier and more positive.
+We can indeed see that the valence is much higher for Michael Jackson’s album as well as its danceability.</p>
+	</div>
+	<div class ="small-vis" style="height:50%">
+		<svg id="alb-vis3" viewBox="-110 -110 220 220" height="100%" width="100%"></svg>
+	</div>
+	<div class="article">
+		<h2>Visualize by yourself</h2>
+		<p>We will now show you some visualizations that will allow you to compare features of some albums and songs. These visualizations are interactive so feel free to play around with them.</p>
+	</div>
+	<div class="container">
+		<div class="right" id ="info">
+		</div>
+		<div class="left">	
+			<svg id="vis" viewBox="-70 -20 340 240" width="100%" height="85%" style="background:#fff"></svg>
+			<svg id="timeline" viewBox="-10 -40 820 160" width="100%" height="15%" style="background:#fff">
+			<pattern id="image1" x="0" y="0" height="40" width="40">
+			<image x="0" y="0" width="20" height="20" xlink:href="./keypoint_vinyl_selected.png"></image>
+			</pattern>
+			<pattern id="image2" x="0" y="0" height="40" width="40">
+			<image x="0" y="0" width="20" height="20" xlink:href="./keypoint_vinyl_unselected.png"></image>
+			</pattern>
+			</svg>
+		</div>
+	</div>
+	<div class="article">
+		<p><a href="about-us.html">About us</a></p>
+	</div>
 </body>
 </html>
